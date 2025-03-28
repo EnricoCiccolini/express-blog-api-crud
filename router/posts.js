@@ -1,14 +1,17 @@
 const express = require('express')
 const router = express.Router()
 const controllerPost = require('../controllers/controller')
-
+const posts = require('../posts')
 
 
 
 
 router.get('/', controllerPost.index)
 
-router.get('/', controllerPost.show)
+router.get('/:id', controllerPost.show)
+
+router.delete('/:id', controllerPost.destroy)
+
 // router.get('/:id', function (req, res) {
 //    // res.send('dettagli del dolce n' + req.params.id)
 //   const param = req.params.id
@@ -31,15 +34,6 @@ router.get('/', controllerPost.show)
 //     res.send('modnifica in parte il dolce n ' + req.params.id)
 // })
 
-// router.delete('/:id', function (req, res) {
-//     const id = parseInt(req.params.id)
-//     const itemToDelete = posts.find(itemToDelete =>  itemToDelete.id === id)
-//     if(!itemToDelete){
-//         res.status(404).json({ message: ' pizza non trovata'})
-//     }
-//     posts.splice(posts.indexOf(itemToDelete),1)
-//     res.status(204).json()
-//     console.log(posts)
-// })
+
 
 module.exports = router;
