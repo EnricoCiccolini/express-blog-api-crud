@@ -1,9 +1,10 @@
-const posts = require('../posts')
+const posts = require('../posts');
+
 
 
 function index(req, res) {
     const check = req.query.tags;
-
+    
     if (check) {
         let tagsPost = posts.filter(post => post.tags && post.tags.includes(check));
         console.log(tagsPost);
