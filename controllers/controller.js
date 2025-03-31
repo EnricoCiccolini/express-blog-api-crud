@@ -3,13 +3,14 @@ const posts = require('../posts');
 
 
 function index(req, res) {
+
     const check = req.query.tags;
     
     if (check) {
-        let tagsPost = posts.filter(post => post.tags && post.tags.includes(check));
-        console.log(tagsPost);
-        res.json(tagsPost);
-        return;
+        let tagsPost = posts.filter(post => post.tags.length && post.tags.includes(check));
+
+        return res.json(tagsPost);
+        
     }
 
     res.json(posts);
@@ -31,11 +32,27 @@ function destroy(req, res) {
     }
     posts.splice(posts.indexOf(itemToDelete), 1)
     res.status(204).json()
-    console.log(posts)
+    console.log(posts, 'sono dopo il json' )
+}
+
+
+function store(req,res){
+    console.log(req.body)
+
+    const idNew = posts[posts.length -1].id +1
+    const dolceNew = {
+        id : idNew,
+        title : req.body.title,
+       content : req.body.name,
+        image : req.body.image,
+        tags : req.body.tags
+    }
+
+    posts.push(dolceNew)
+    res.status(201).json(dolceNew)
 }
 
 
 
 
-
-module.exports = { index, show, destroy }
+module.exports = { index, show, destroy ,store }

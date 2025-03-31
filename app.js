@@ -3,6 +3,8 @@ const app = express()
 const port = 3003
 const postsRouter = require('./router/posts')
 
+app.use(express.json())
+
 app.use('/posts' ,postsRouter)
 
 
