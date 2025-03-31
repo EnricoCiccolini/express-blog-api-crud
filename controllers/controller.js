@@ -52,7 +52,21 @@ function store(req,res){
     res.status(201).json(dolceNew)
 }
 
+function update( req , res ){
+    const id = parseInt(req.params.id)
+    let itemToModify = posts.find(itemToModify => itemToModify.id === id)
+    itemToModify ?? res.status(404).json('dolce non trovato')
+   
+
+    itemToModify.title =req.body.title
+    itemToModify.content =req.body.content
+    itemToModify.image =req.body.image
+    itemToModify.tags =req.body.tags
+
+console.log(posts)
+res.json(itemToModify)
+
+}
 
 
-
-module.exports = { index, show, destroy ,store }
+module.exports = { index, show, destroy ,store ,update }

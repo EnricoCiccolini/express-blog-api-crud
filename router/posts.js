@@ -14,6 +14,8 @@ router.delete('/:id', controllerPost.destroy)
 
 router.post('/', controllerPost.store)
 
+router.put('/:id',controllerPost.update )
+
 // router.get('/:id', function (req, res) {
 //    // res.send('dettagli del dolce n' + req.params.id)
 //   const param = req.params.id
