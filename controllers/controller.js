@@ -68,5 +68,41 @@ res.json(itemToModify)
 
 }
 
+function modify( req , res ){
+    const id = parseInt(req.params.id)
+    let itemToModify = posts.find(itemToModify => itemToModify.id === id)
+    itemToModify ?? res.status(404).json('dolce non trovato')
+   
 
-module.exports = { index, show, destroy ,store ,update }
+    
+    if (!itemToModify) {
+        return res.status(404).json('dolce non trovato');
+    }
+
+    if (req.body.title ) {
+        itemToModify.title = req.body.title;
+    }
+
+    if (req.body.content ) {
+        itemToModify.content = req.body.content;
+    }
+
+    if (req.body.image ) {
+        itemToModify.image = req.body.image;
+    }
+
+    if (req.body.tags ) {
+        itemToModify.tags = req.body.tags;
+    }
+
+console.log(posts)
+res.json(itemToModify)
+
+}
+
+
+
+
+
+
+module.exports = { index, show, destroy ,store ,update, modify }
