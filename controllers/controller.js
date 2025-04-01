@@ -7,6 +7,7 @@ function index(req, res) {
     const check = req.query.tags;
     
     if (check) {
+        
         let tagsPost = posts.filter(post => post.tags.length && post.tags.includes(check));
 
         return res.json(tagsPost);
@@ -94,6 +95,8 @@ function modify( req , res ){
     if (req.body.tags ) {
         itemToModify.tags = req.body.tags;
     }
+
+    
 
 console.log(posts)
 res.json(itemToModify)
